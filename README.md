@@ -120,6 +120,15 @@ Full details: [docs/limitations.md](docs/limitations.md) and [docs/troubleshooti
 
 See [.github/CONTRIBUTING.md](.github/CONTRIBUTING.md) if present, otherwise: open an issue first for significant changes, keep changes dependency-free, add tests for lib changes, run `node tests/run-tests.js` and the build script before submitting a PR. Never commit credentials, user data, downloaded private content, or secrets.
 
+## Developer & Support
+
+Developed by **Muhammad Hamid** — Web Developer, Digital Marketing Head, Technical SEO, Google Ads & Meta Ads Specialist.
+
+- **Portfolio**: [https://abouthamid.web.app/](https://abouthamid.web.app/)
+- **GitHub**: [https://github.com/hamid-digitalmarketer](https://github.com/hamid-digitalmarketer)
+- **Direct WhatsApp**: [+92 316 7417135](https://wa.me/923167417135)
+- **Email**: `hamidbloger1@gmail.com`
+
 ## License
 
 MIT — see [LICENSE](LICENSE).

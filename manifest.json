@@ -2,7 +2,9 @@
   "manifest_version": 3,
   "name": "PinVault — Pinterest Image & Video Downloader",
   "version": "1.0.0",
-  "description": "Save Pinterest images and supported videos to your computer. Local-first, private, no tracking. Bulk download boards and search results with smart naming and duplicate detection.",
+  "description": "Save Pinterest images and videos to your computer. Local-first, private, no tracking. Bulk download with duplicate detection.",
+  "homepage_url": "https://abouthamid.web.app/",
+  "author": "Muhammad Hamid",
   "minimum_chrome_version": "116",
   "permissions": ["storage", "downloads", "activeTab"],
   "host_permissions": [
