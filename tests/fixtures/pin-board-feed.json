@@ -1,0 +1,20 @@
+{
+  "id": "7777777777777777777",
+  "title": "Board Preview Feed Entry",
+  "board": "interior-design",
+  "pinUrl": "https://www.pinterest.com/pin/7777777777777777777/",
+  "sourceUrl": "",
+  "images": {
+    "originals": {
+      "url": "https://i.pinimg.com/originals/aa/bb/cc/aabbccddeeff00112233445566778899.jpg",
+      "width": 800,
+      "height": 600
+    },
+    "736x": {
+      "url": "https://i.pinimg.com/736x/aa/bb/cc/aabbccddeeff00112233445566778899.jpg",
+      "width": 736,
+      "height": 552
+    }
+  },
+  "videos": {}
+}

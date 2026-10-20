@@ -1,0 +1,74 @@
+name: Bug report
+description: Report a problem with PinVault
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Before submitting, check `docs/troubleshooting.md` and search existing issues.
+  - type: input
+    id: version
+    attributes:
+      label: PinVault version
+      description: Shown in the popup (About) or manifest.json
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: chrome
+    attributes:
+      label: Chrome version & OS
+      description: e.g. Chrome 131 on Windows 11
+      placeholder: "131 / Windows 11"
+    validations:
+      required: true
+  - type: dropdown
+    id: page-type
+    attributes:
+      label: Page type where the issue occurs
+      options:
+        - Home feed
+        - Board
+        - Search results
+        - Pin detail page
+        - Popup / dashboard only
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a board...
+        2. Click Scan current page...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostic details
+      description: Optional — console lines prefixed [PinVault, redacted screenshots, or a public pin URL
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Verification
+      options:
+        - label: I confirm I am authorized to save/report on the content involved
+          required: true
+        - label: I removed any personal data from screenshots
+          required: true

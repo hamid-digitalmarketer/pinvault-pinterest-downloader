@@ -1,0 +1,35 @@
+name: Feature request
+description: Suggest an improvement or new feature for PinVault
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        PinVault is local-first and dependency-free. Proposals that require new permissions, external services, or remote code need a strong privacy/safety justification.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      placeholder: "Describe the user need..."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      placeholder: "Describe the feature and how it should behave..."
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      placeholder: "Workarounds or different approaches..."
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: I understand this must stay local-first (no cloud sync, no analytics, no uploads)
+        - label: I understand PinVault will not bypass DRM, logins, CAPTCHAs, or rate limits

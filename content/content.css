@@ -1,0 +1,66 @@
+/* PinVault content styles — hover overlay button + toast. */
+
+#pinvault-overlay-host {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+}
+
+#pinvault-overlay-host .pinvault-dl-btn {
+  position: fixed;
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 999px;
+  background: #e60023;
+  color: #ffffff;
+  font: 600 13px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: 0.2px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: background 120ms ease, transform 120ms ease;
+}
+
+#pinvault-overlay-host .pinvault-dl-btn:hover,
+#pinvault-overlay-host .pinvault-dl-btn:focus-visible {
+  background: #c0001e;
+  transform: translateY(-1px);
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 2px;
+}
+
+#pinvault-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(16px);
+  max-width: 86vw;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(17, 17, 17, 0.92);
+  color: #ffffff;
+  font: 500 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  transition: opacity 200ms ease, transform 200ms ease;
+  pointer-events: none;
+  z-index: 2147483646;
+}
+
+#pinvault-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  #pinvault-overlay-host .pinvault-dl-btn,
+  #pinvault-toast {
+    transition: none;
+  }
+}

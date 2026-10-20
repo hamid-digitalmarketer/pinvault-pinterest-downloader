@@ -1,0 +1,23 @@
+# Production artifacts (built by scripts/build.ps1)
+dist/
+
+# Dependencies
+node_modules/
+
+# Logs and temp
+*.log
+temp/
+.tmp/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Secrets (never commit)
+*.pem
+*.key
+.env

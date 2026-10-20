@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PinVault — Pinterest Image &amp; Video Downloader</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <header class="db-header">
+    <div class="db-header-left">
+      <img src="../icons/icon48.png" alt="" width="36" height="36" class="db-logo" />
+      <div>
+        <h1>PinVault</h1>
+        <p class="db-tagline">Pinterest Image &amp; Video Downloader</p>
+      </div>
+    </div>
+    <nav class="db-tabs" role="tablist" aria-label="Dashboard sections">
+      <button class="db-tab active" data-view="collect" role="tab" aria-selected="true">Collect</button>
+      <button class="db-tab" data-view="collections" role="tab" aria-selected="false">Collections</button>
+      <button class="db-tab" data-view="history" role="tab" aria-selected="false">History</button>
+      <button class="db-tab" data-view="settings" role="tab" aria-selected="false">Settings</button>
+      <button class="db-tab" data-view="help" role="tab" aria-selected="false">Help</button>
+    </nav>
+    <div class="db-header-right">
+      <button id="themeToggle" class="db-btn db-btn-ghost" title="Toggle theme" aria-label="Toggle theme">◐</button>
+      <button id="openPopup" class="db-btn db-btn-ghost" title="Open popup">Popup</button>
+    </div>
+  </header>
+
+  <main class="db-main">
+    <!-- COLLECT VIEW -->
+    <section id="view-collect" class="db-view active" role="tabpanel">
+      <div class="db-toolbar">
+        <button id="scanPage" class="db-btn db-btn-primary">Scan current page</button>
+        <button id="openPinterest" class="db-btn">Open Pinterest</button>
+        <span id="collectStatus" class="db-inline-status" role="status"></span>
+      </div>
+
+      <div class="db-filters" id="filtersBar">
+        <label>Filter
+          <select id="filterOrientation">
+            <option value="any">Any orientation</option>
+            <option value="landscape">Landscape</option>
+            <option value="portrait">Portrait</option>
+            <option value="square">Square</option>
+          </select>
+        </label>
+        <label>Type
+          <select id="filterType">
+            <option value="any">Any</option>
+            <option value="image">Images only</option>
+            <option value="video">Videos only</option>
+          </select>
+        </label>
+        <label>Min width
+          <input type="number" id="filterMinW" min="0" placeholder="0" />
+        </label>
+        <label>Min height
+          <input type="number" id="filterMinH" min="0" placeholder="0" />
+        </label>
+        <label>Format
+          <select id="filterFormat">
+            <option value="any">Any format</option>
+            <option value="jpg">JPG</option>
+            <option value="png">PNG</option>
+            <option value="webp">WebP</option>
+            <option value="gif">GIF</option>
+            <option value="mp4">MP4</option>
+          </select>
+        </label>
+        <label class="db-check">
+          <input type="checkbox" id="filterHideDup" /> Hide duplicates
+        </label>
+      </div>
+
+      <div class="db-actions">
+        <button id="selectAll" class="db-btn">Select all</button>
+        <button id="deselectAll" class="db-btn">Deselect all</button>
+        <button id="downloadSelected" class="db-btn db-btn-primary">Download selected (<span id="selCount">0</span>)</button>
+        <button id="saveCollection" class="db-btn">Save as collection</button>
+        <button id="exportCsv" class="db-btn">Export CSV</button>
+        <button id="exportJson" class="db-btn">Export JSON</button>
+        <button id="clearCollect" class="db-btn db-btn-ghost">Clear</button>
+      </div>
+
+      <div id="gridWrap" class="db-grid-wrap">
+        <div id="grid" class="db-grid" aria-live="polite"></div>
+        <div id="gridEmpty" class="db-empty" hidden>
+          <p>No media collected yet. Open a Pinterest board or search page and click <strong>Scan current page</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS VIEW -->
+    <section id="view-collections" class="db-view" role="tabpanel">
+      <div class="db-toolbar">
+        <h2>My collections</h2>
+        <button id="newCollection" class="db-btn db-btn-primary">New collection</button>
+      </div>
+      <div id="collectionsList" class="db-collections"></div>
+      <div id="collectionDetail" class="db-collection-detail" hidden>
+        <div class="db-actions">
+          <h3 id="collectionName"></h3>
+          <button id="downloadCollection" class="db-btn db-btn-primary">Download collection</button>
+          <button id="deleteCollection" class="db-btn db-btn-danger">Delete collection</button>
+        </div>
+        <div id="collectionGrid" class="db-grid"></div>
+      </div>
+    </section>
+
+    <!-- HISTORY VIEW -->
+    <section id="view-history" class="db-view" role="tabpanel">
+      <div class="db-toolbar">
+        <h2>Download history</h2>
+        <button id="clearHistory" class="db-btn db-btn-ghost">Clear history</button>
+      </div>
+      <div id="historyTableWrap" class="db-table-wrap"></div>
+    </section>
+
+    <!-- SETTINGS VIEW -->
+    <section id="view-settings" class="db-view" role="tabpanel">
+      <h2>Settings</h2>
+      <form id="settingsForm" class="db-settings-form">
+        <label>Filename pattern
+          <input type="text" id="setPattern" maxlength="120"
+                 placeholder="{title}-{index}.{ext}" />
+          <small>Placeholders: {pin_id} {title} {board} {date} {index} {ext}</small>
+        </label>
+        <label class="db-check">
+          <input type="checkbox" id="setBoardFolder" /> Put downloads in a folder named after the board
+        </label>
+        <label>Download folder name
+          <input type="text" id="setFolder" maxlength="80" placeholder="PinVault" />
+        </label>
+        <label>Concurrency (1–8)
+          <input type="number" id="setConcurrency" min="1" max="8" />
+        </label>
+        <label>Max retries
+          <input type="number" id="setRetries" min="0" max="5" />
+        </label>
+        <label>Min width (pixels, 0 = off)
+          <input type="number" id="setMinW" min="0" />
+        </label>
+        <label>Min height (pixels, 0 = off)
+          <input type="number" id="setMinH" min="0" />
+        </label>
+        <label>Min longest side (pixels, 0 = off)
+          <input type="number" id="setMinLong" min="0" />
+        </label>
+        <label>Format filter
+          <select id="setFormat">
+            <option value="any">Any</option>
+            <option value="image">Images only</option>
+            <option value="video">Videos only</option>
+          </select>
+        </label>
+        <label>Theme
+          <select id="setTheme">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+        <label class="db-check">
+          <input type="checkbox" id="setDupCheck" /> Skip duplicates (persistent, local-only)
+        </label>
+        <label class="db-check">
+          <input type="checkbox" id="setConfirm" /> Ask where to save each file (saveAs)
+        </label>
+        <div class="db-actions">
+          <button type="submit" class="db-btn db-btn-primary">Save settings</button>
+          <button type="button" id="wipeData" class="db-btn db-btn-danger">Delete all PinVault data</button>
+        </div>
+        <p id="settingsStatus" class="db-inline-status" role="status"></p>
+      </form>
+    </section>
+
+    <!-- HELP VIEW -->
+    <section id="view-help" class="db-view" role="tabpanel">
+      <h2>Help &amp; troubleshooting</h2>
+      <article class="db-help">
+        <h3>How to download a single image</h3>
+        <p>Hover a pin on Pinterest and click the red <strong>Download</strong> button. On pin pages, paste the URL in the popup for a quick download.</p>
+        <h3>How to download a board or search results</h3>
+        <p>Open the board or search page, click <strong>Scan current page</strong> in the dashboard, review the grid, and click <strong>Download selected</strong>. Scroll the page to load more pins before scanning for larger collections.</p>
+        <h3>Videos</h3>
+        <p>Videos exposed as a direct MP4/WebM file can be saved. Segmented HLS (m3u8) streams and DRM-protected content cannot be saved as a single file — this is a documented limitation, not a bypass.</p>
+        <h3>Pinterest requires login</h3>
+        <p>Some boards and full-resolution images are only accessible to signed-in users. Log in to Pinterest in this browser before scanning. PinVault never stores your credentials or cookies.</p>
+        <h3>Nothing is detected</h3>
+        <p>Reload the Pinterest page (Pinterest may have updated its DOM), log in if needed, and re-scan. If the problem persists, report it with the extension version shown in the header.</p>
+        <h3>Where do files go?</h3>
+        <p>Files are saved through Chrome's downloads system to your configured Chrome download folder, optionally under a <em>PinVault</em> subfolder.</p>
+        <h3>Is my data shared?</h3>
+        <p>No. Everything is local. Read the privacy policy in <code>docs/privacy-policy.md</code>.</p>
+      </article>
+    </section>
+  </main>
+
+  <div id="toast" class="db-toast" role="status"></div>
+
+  <script src="../lib/messaging.js"></script>
+  <script src="../lib/filename-utils.js"></script>
+  <script src="../lib/duplicate-utils.js"></script>
+  <script src="../lib/url-utils.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

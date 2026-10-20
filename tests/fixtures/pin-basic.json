@@ -1,0 +1,36 @@
+{
+  "id": "8456231789512304567",
+  "title": "Minimalist Scandinavian Interior Design Ideas",
+  "board": "interior-design",
+  "pinUrl": "https://www.pinterest.com/pin/8456231789512304567/",
+  "sourceUrl": "https://example.com/blog/scandi-interiors",
+  "images": {
+    "originals": {
+      "url": "https://i.pinimg.com/originals/ab/cd/ef/abcdef1234567890abcdef1234567890.jpg",
+      "width": 1200,
+      "height": 1500
+    },
+    "736x": {
+      "url": "https://i.pinimg.com/736x/ab/cd/ef/abcdef1234567890abcdef1234567890.jpg",
+      "width": 736,
+      "height": 920
+    },
+    "474x": {
+      "url": "https://i.pinimg.com/474x/ab/cd/ef/abcdef1234567890abcdef1234567890.jpg",
+      "width": 474,
+      "height": 593
+    }
+  },
+  "videos": {
+    "video_list": [
+      {
+        "url": "https://v.pinimg.com/videos/mc/720p/ab/cd/ef/abcdef1234567890abcdef1234567890.mp4",
+        "width": 1280,
+        "height": 720,
+        "duration": 12.4
+      }
+    ]
+  },
+  "dominant_color": "#8a6f5a",
+  "description": "Warm minimal living room inspiration"
+}

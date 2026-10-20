@@ -1,0 +1,70 @@
+{
+  "manifest_version": 3,
+  "name": "PinVault — Pinterest Image & Video Downloader",
+  "version": "1.0.0",
+  "description": "Save Pinterest images and supported videos to your computer. Local-first, private, no tracking. Bulk download boards and search results with smart naming and duplicate detection.",
+  "minimum_chrome_version": "116",
+  "permissions": ["storage", "downloads", "activeTab"],
+  "host_permissions": [
+    "*://*.pinterest.com/*",
+    "*://*.pinimg.com/*",
+    "https://pin.it/*"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.pinterest.com/*",
+        "*://*.pinterest.co.uk/*",
+        "*://*.pinterest.ca/*",
+        "*://*.pinterest.de/*",
+        "*://*.pinterest.fr/*",
+        "*://*.pinterest.jp/*",
+        "*://*.pinterest.cl/*",
+        "*://*.pinterest.com.mx/*",
+        "*://*.pinterest.es/*",
+        "*://*.pinterest.it/*",
+        "*://*.pinterest.at/*",
+        "*://*.pinterest.pt/*",
+        "*://*.pinterest.dk/*",
+        "*://*.pinterest.se/*",
+        "*://*.pinterest.nz/*",
+        "*://*.pinterest.co/*",
+        "*://*.pinterest.ph/*",
+        "*://*.pinterest.ie/*",
+        "*://*.pinterest.ru/*",
+        "*://*.pinterest.ch/*",
+        "*://*.pinterest.au/*"
+      ],
+      "js": ["content/content.js"],
+      "css": ["content/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "PinVault — Pinterest Image & Video Downloader",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "options_page": "dashboard/dashboard.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/icon128.png"],
+      "matches": ["*://*.pinterest.com/*"]
+    }
+  ]
+}

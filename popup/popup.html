@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PinVault</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="pv-header">
+    <img src="../icons/icon48.png" alt="" class="pv-logo" width="32" height="32" />
+    <div class="pv-title-block">
+      <h1>PinVault</h1>
+      <p>Pinterest Image &amp; Video Downloader</p>
+    </div>
+    <button id="themeToggle" class="pv-icon-btn" title="Toggle theme" aria-label="Toggle theme">◐</button>
+  </header>
+
+  <main class="pv-body">
+    <section class="pv-card">
+      <h2>Quick download</h2>
+      <div class="pv-row">
+        <input id="pinUrl" type="url" placeholder="Paste a Pinterest pin URL (or pin.it link)" />
+        <button id="quickDl" class="pv-btn pv-btn-primary">Download</button>
+      </div>
+      <p id="quickStatus" class="pv-status" role="status"></p>
+    </section>
+
+    <section class="pv-card">
+      <h2>Current page</h2>
+      <div class="pv-row">
+        <button id="scanPage" class="pv-btn pv-btn-primary">Scan this page</button>
+        <button id="openDashboard" class="pv-btn">Open dashboard</button>
+      </div>
+      <p id="scanStatus" class="pv-status" role="status"></p>
+    </section>
+
+    <section class="pv-card" id="queueCard" hidden>
+      <h2>Download queue</h2>
+      <div class="pv-queue-stats" id="queueStats"></div>
+      <div class="pv-row">
+        <button id="pauseBtn" class="pv-btn">Pause</button>
+        <button id="resumeBtn" class="pv-btn">Resume</button>
+        <button id="cancelBtn" class="pv-btn pv-btn-danger">Cancel</button>
+      </div>
+    </section>
+
+    <section class="pv-card">
+      <h2>Recent history</h2>
+      <ul id="historyList" class="pv-history"></ul>
+      <button id="clearHistory" class="pv-link-btn">Clear extension history</button>
+    </section>
+
+    <footer class="pv-footer">
+      <button id="openSettings" class="pv-link-btn">Settings</button>
+      <span>·</span>
+      <a id="helpLink" href="#">Help</a>
+      <span>·</span>
+      <span class="pv-version" id="versionLabel">v1.0.0</span>
+    </footer>
+  </main>
+
+  <script src="../lib/messaging.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
