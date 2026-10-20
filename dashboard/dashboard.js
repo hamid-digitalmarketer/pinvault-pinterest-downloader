@@ -3,6 +3,12 @@
  * Vanilla JS; communicates with background via validated envelopes and with
  * the active Pinterest tab via content-script SCAN_PAGE.
  */
+import * as PinVaultMessaging from '../lib/messaging.js';
+import * as PinVaultFilenameUtils from '../lib/filename-utils.js';
+import * as PinVaultDuplicateUtils from '../lib/duplicate-utils.js';
+import * as PinVaultUrlUtils from '../lib/url-utils.js';
+import * as PinVaultExportUtils from '../lib/export-utils.js';
+
 (() => {
   'use strict';
 
@@ -515,7 +521,7 @@
   // ---------- settings ----------
   async function loadSettings() {
     const res = await send('GET_SETTINGS', {});
-    const s = res && res.ok ? res.data : {};
+    const s = (res && res.ok && res.data) ? res.data : {};
     els.setPattern.value = s.filenamePattern || '';
     els.setBoardFolder.checked = !!s.boardFolderEnabled;
     els.setFolder.value = s.folderName || '';
@@ -629,7 +635,7 @@
     els.wipeData.addEventListener('click', wipeData);
     els.themeToggle.addEventListener('click', async () => {
       const res = await send('GET_SETTINGS', {});
-      const cur = res && res.ok ? res.data.theme : 'system';
+      const cur = (res && res.ok && res.data && res.data.theme) ? res.data.theme : 'system';
       const next = cur === 'light' ? 'dark' : 'light';
       await send('SAVE_SETTINGS', { settings: { theme: next } });
       await loadSettings();

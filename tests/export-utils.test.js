@@ -1,8 +1,7 @@
 'use strict';
-const path = require('path');
-const Exporters = require(path.join(__dirname, '..', 'lib', 'export-utils.js'));
+import * as Exporters from '../lib/export-utils.js';
 
-module.exports = {
+export default {
   'csv export escapes commas quotes and newlines': () => {
     const recs = [
       {

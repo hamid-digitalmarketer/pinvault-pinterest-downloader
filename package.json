@@ -1,0 +1,7 @@
+{
+  "name": "pinvault-pinterest-downloader",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Save Pinterest images and supported videos to your computer."
+}

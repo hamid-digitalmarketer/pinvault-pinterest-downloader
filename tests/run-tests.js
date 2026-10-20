@@ -5,8 +5,12 @@
  */
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const RESULTS = { pass: 0, fail: 0, errors: [] };
 
@@ -34,8 +38,8 @@ assert.throws = (fn, msg) => {
 global.assert = assert;
 
 async function runFile(file) {
-  const mod = require(file);
-  const tests = Object.entries(mod);
+  const mod = await import(pathToFileURL(file).href);
+  const tests = Object.entries(mod.default || mod);
   for (const [name, fn] of tests) {
     if (typeof fn !== 'function') continue;
     const label = `${path.basename(file)} :: ${name}`;

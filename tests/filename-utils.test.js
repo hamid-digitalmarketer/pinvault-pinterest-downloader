@@ -1,8 +1,8 @@
 'use strict';
-const path = require('path');
-const Filename = require(path.join(__dirname, '..', 'lib', 'filename-utils.js'));
+import path from 'node:path';
+import * as Filename from '../lib/filename-utils.js';
 
-module.exports = {
+export default {
   'sanitizes illegal filesystem characters': () => {
     const out = Filename.sanitize('a/b\\c:d*e?f"g<h>i|j');
     assert.ok(!/[\\/:*?"<>|]/.test(out), 'illegal chars remain: ' + out);

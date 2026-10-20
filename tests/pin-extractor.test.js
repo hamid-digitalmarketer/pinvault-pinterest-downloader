@@ -1,15 +1,18 @@
 'use strict';
-const path = require('path');
-const fs = require('fs');
-const Extractor = require(path.join(__dirname, '..', 'lib', 'pin-extractor.js'));
+import path from 'node:path';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import * as Extractor from '../lib/pin-extractor.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const FIXTURES = path.join(__dirname, 'fixtures');
 
 function readFixture(name) {
   return fs.readFileSync(path.join(FIXTURES, name), 'utf8');
 }
 
-module.exports = {
+export default {
   'parses pin JSON fixture into normalized record': () => {
     const json = JSON.parse(readFixture('pin-basic.json'));
     const rec = Extractor.extractFromPinJson(json);

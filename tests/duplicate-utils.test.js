@@ -1,8 +1,7 @@
 'use strict';
-const path = require('path');
-const Dup = require(path.join(__dirname, '..', 'lib', 'duplicate-utils.js'));
+import * as Dup from '../lib/duplicate-utils.js';
 
-module.exports = {
+export default {
   'mediaKey normalizes URL variants of same image': () => {
     const a = Dup.mediaKey({ url: 'https://i.pinimg.com/736x/ab/cd/ef/abc.jpg' });
     const b = Dup.mediaKey({ url: 'https://i.pinimg.com/originals/ab/cd/ef/abc.jpg?v=3' });

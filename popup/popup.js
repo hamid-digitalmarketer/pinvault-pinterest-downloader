@@ -2,6 +2,9 @@
  * PinVault popup logic.
  * Uses vanilla JS; communicates with background via validated envelopes.
  */
+import * as PinVaultMessaging from '../lib/messaging.js';
+import * as PinVaultPinExtractor from '../lib/pin-extractor.js';
+
 (() => {
   'use strict';
 
@@ -118,9 +121,9 @@
         return;
       }
       const html = await pageRes.text();
-      const records = PinVaultPinExtractor
-        ? extractFromHtml(html, raw)
-        : [];
+      const records = PinVaultPinExtractor && PinVaultPinExtractor.extractFromHtml
+        ? PinVaultPinExtractor.extractFromHtml(html, raw)
+        : extractFromHtml(html, raw);
       if (records.length === 0) {
         setStatus(els.quickStatus, 'Could not find downloadable media on this pin. Pinterest may require login or the DOM changed.', 'error');
         return;

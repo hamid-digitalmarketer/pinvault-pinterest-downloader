@@ -1,6 +1,5 @@
 'use strict';
-const path = require('path');
-const Queue = require(path.join(__dirname, '..', 'lib', 'queue.js'));
+import * as Queue from '../lib/queue.js';
 
 const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -16,7 +15,7 @@ function makeWorker(run) {
   };
 }
 
-module.exports = {
+export default {
   'runs all tasks with bounded concurrency': async () => {
     const q = new Queue.DownloadQueue({ concurrency: 2, maxRetries: 0 });
     let active = 0;

@@ -1,8 +1,7 @@
 'use strict';
-const path = require('path');
-const Url = require(path.join(__dirname, '..', 'lib', 'url-utils.js'));
+import * as Url from '../lib/url-utils.js';
 
-module.exports = {
+export default {
   'accepts https pin URL': () => {
     assert.ok(Url.isValidPinUrl('https://www.pinterest.com/pin/123456789012345678/'));
   },

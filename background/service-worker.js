@@ -435,23 +435,19 @@ async function handleMessage(msg) {
       const format = msg.payload.format === 'json' ? 'json' : 'csv';
       const collection = String(msg.payload.collection || 'inventory');
       const rendered = format === 'json' ? renderJson(records) : renderCsv(records);
-      const blob = new Blob([rendered], {
-        type: format === 'json' ? 'application/json' : 'text/csv',
-      });
-      const objectUrl = URL.createObjectURL(blob);
+      const mime = format === 'json' ? 'application/json' : 'text/csv';
+      const dataUrl = `data:${mime};charset=utf-8,${encodeURIComponent(rendered)}`;
       const ts = Date.now();
       const filename = `pinvault-${collection}-${ts}.${format}`;
       try {
         const dlId = await new Promise((resolve, reject) => {
-          chrome.downloads.download({ url: objectUrl, filename, conflictAction: 'uniquify' }, (id) => {
+          chrome.downloads.download({ url: dataUrl, filename, conflictAction: 'uniquify' }, (id) => {
             if (chrome.runtime.lastError) reject(new Error(chrome.runtime.lastError.message));
             else resolve(id);
           });
         });
-        setTimeout(() => URL.revokeObjectURL(objectUrl), 60000);
         return { ok: true, downloadId: dlId, filename, count: records.length };
       } catch (err) {
-        URL.revokeObjectURL(objectUrl);
         return { ok: false, error: err.message };
       }
     }
